@@ -8,11 +8,11 @@ the model
 import pandas as pd
 import numpy as np
 import requests
-from datetime import datetime, timedelta, timezone # Import timezone for UTC
+from datetime import datetime, timedelta, timezone 
 from zoneinfo import ZoneInfo
-import xgboost as xgb # Reverted to XGBoost
+import xgboost as xgb 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score # Added r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score 
 import json
 import os
 from typing import Dict, Tuple, Optional
@@ -59,7 +59,7 @@ def fetch_latest_carbon_data(zone=ZONE):
     else:
         raise Exception(f"Failed to fetch latest carbon data: {response.status_code} - {response.text}")
 
-def fetch_power_demand_data_eia(api_key: str, days: int = 365) -> pd.DataFrame: # Changed to 365 days
+def fetch_power_demand_data_eia(api_key: str, days: int = 365) -> pd.DataFrame: 
     """Fetch real power demand data from EIA"""
     base_url = "https://api.eia.gov/v2/electricity/rto/region-data/data/"
     end = datetime.now(tz=timezone.utc) # Use timezone-aware UTC datetime
@@ -129,7 +129,7 @@ def fetch_power_demand_data_eia(api_key: str, days: int = 365) -> pd.DataFrame: 
         print(f"Warning: Could not fetch power demand data: {response.status_code} - {response.text}")
         return pd.DataFrame()
 
-def fetch_real_time_price_data_eia(api_key: str, days: int = 365) -> pd.DataFrame: # Changed to 365 days
+def fetch_real_time_price_data_eia(api_key: str, days: int = 365) -> pd.DataFrame:
     """Fetch electricity price data with more historical context from EIA API."""
     base_url = "https://api.eia.gov/v2/electricity/rto/region-data/data/"
     end = datetime.now(tz=timezone.utc) # Use timezone-aware UTC datetime
