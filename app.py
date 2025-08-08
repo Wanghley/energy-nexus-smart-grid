@@ -55,7 +55,7 @@ if models:
     st.write("### Predictions for next 24 hours")
     forecast_df = df.tail(24).copy()
 
-    # For each model, use correct features from feature_cols_per_model
+
     forecast_df = predict(models, forecast_df, feature_cols_per_model)
     forecast_df = scale_predictions(forecast_df)
 
